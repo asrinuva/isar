@@ -27,6 +27,7 @@ do_prepare_build[depends] += "trusted-firmware-a-imx8mmlpd4-evk:do_deploy_deb"
 DEBIAN_BUILD_DEPENDS .= ", \
     efitools:native, \
     libgnutls28-dev:native, \
+    libgnutls28-dev:${DISTRO_ARCH}, \
     libssl-dev:native, \
     libssl-dev:${DISTRO_ARCH}, \
     python3-dev:native, \
