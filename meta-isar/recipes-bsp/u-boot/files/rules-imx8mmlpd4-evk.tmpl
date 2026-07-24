@@ -15,6 +15,7 @@ endif
 override_dh_auto_build:
 	$(MAKE) $(PARALLEL_MAKE) ${U_BOOT_CONFIG}
 	$(MAKE) $(PARALLEL_MAKE) ${U_BOOT_EXTRA_BUILDARGS}
+	$(MAKE) $(PARALLEL_MAKE) ${U_BOOT_EXTRA_BUILDARGS} flash.bin
 	$(MAKE) -n u-boot-initial-env >/dev/null 2>&1; if [ $$? -ne 2 ]; then \
 		$(MAKE) $(PARALLEL_MAKE) u-boot-initial-env; \
 	else \
