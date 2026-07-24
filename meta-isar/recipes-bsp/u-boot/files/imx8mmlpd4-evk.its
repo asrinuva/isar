@@ -1,0 +1,56 @@
+/dts-v1/;
+
+/ {
+	description = "U-Boot FIT image";
+	#address-cells = <1>;
+
+	images {
+		uboot {
+			description = "U-Boot";
+			data = /incbin/("u-boot-nodtb.bin");
+			type = "firmware";
+			arch = "arm64";
+			os = "u-boot";
+			compression = "none";
+			load = <0x40200000>;
+			entry = <0x40200000>;
+			hash {
+				algo = "sha256";
+			};
+		};
+
+		fdt {
+			description = "U-Boot DTB";
+			data = /incbin/("dts/dt.dtb");
+			type = "flat_dt";
+			arch = "arm64";
+			compression = "none";
+			hash {
+				algo = "sha256";
+			};
+		};
+
+		atf {
+			description = "ARM Trusted Firmware";
+			data = /incbin/("bl31.bin");
+			type = "firmware";
+			arch = "arm64";
+			os = "arm-trusted-firmware";
+			compression = "none";
+			load = <0x00960000>;
+			entry = <0x00960000>;
+			hash {
+				algo = "sha256";
+			};
+		};
+	};
+
+	configurations {
+		default = "conf";
+		conf {
+			firmware = "uboot";
+			loadables = "atf";
+			fdt = "fdt";
+		};
+	};
+};
