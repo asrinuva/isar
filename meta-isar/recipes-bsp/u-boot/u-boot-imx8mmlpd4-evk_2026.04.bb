@@ -39,5 +39,5 @@ DEBIAN_BUILD_DEPENDS .= ", \
 do_prepare_build:append() {
     cp ${DEPLOY_DIR_IMAGE}/imx8mmlpd4-evk-bl31.bin ${S}/bl31.bin
     cp ${WORKDIR}/rules-imx8mmlpd4-evk ${S}/debian/rules
-    cp ${WORKDIR}/imx8mmlpd4-evk.its ${S}/u-boot.its
+    cp ${WORKDIR}/imx8mmlpd4-evk.its ${S}/debian/u-boot.its
 }
