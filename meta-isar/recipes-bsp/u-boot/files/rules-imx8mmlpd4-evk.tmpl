@@ -17,6 +17,7 @@ override_dh_auto_build:
 	$(MAKE) $(PARALLEL_MAKE) ${U_BOOT_EXTRA_BUILDARGS}
 	cp -f debian/u-boot.its u-boot.its
 	$(MAKE) $(PARALLEL_MAKE) ${U_BOOT_EXTRA_BUILDARGS} U_BOOT_ITS=u-boot.its u-boot.itb
+	$(MAKE) $(PARALLEL_MAKE) ${U_BOOT_EXTRA_BUILDARGS} spl/u-boot-spl-ddr.bin
 	$(MAKE) $(PARALLEL_MAKE) ${U_BOOT_EXTRA_BUILDARGS} U_BOOT_ITS=u-boot.its flash.bin
 	@if $(MAKE) -n u-boot-initial-env >/dev/null 2>&1; then \
 		$(MAKE) $(PARALLEL_MAKE) u-boot-initial-env; \
