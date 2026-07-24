@@ -20,7 +20,7 @@ U_BOOT_BIN_INSTALL = "flash.bin u-boot.bin u-boot-nodtb.bin u-boot.dtb spl/u-boo
 U_BOOT_EXTRA_BUILDARGS = "BL31=${S}/bl31.bin"
 
 DEPENDS += "trusted-firmware-a-imx8mmlpd4-evk"
-do_prepare_build[depends] += "trusted-firmware-a-imx8mmlpd4-evk:do_deploy"
+do_prepare_build[depends] += "trusted-firmware-a-imx8mmlpd4-evk:do_deploy_deb"
 
 DEBIAN_BUILD_DEPENDS .= ", \
     libssl-dev:native, \
