@@ -1,0 +1,34 @@
+#
+# Copyright (c) Siemens AG, 2026
+#
+# SPDX-License-Identifier: MIT
+
+inherit u-boot
+
+MAINTAINER = "isar-users <isar-users@googlegroups.com>"
+
+COMPATIBLE_MACHINE = "^(imx8mmlpd4-evk)$"
+
+SRC_URI += "git://github.com/nxp-imx/uboot-imx.git;protocol=https;branch=lf_v2026.04"
+SRCREV = "6eeef838dac4ddbc06ff14450531a95e8c5cb346"
+
+S = "${WORKDIR}/git"
+
+U_BOOT_CONFIG ?= "imx8mm_evk_defconfig"
+U_BOOT_BIN ?= "flash.bin"
+U_BOOT_BIN_INSTALL = "flash.bin u-boot.bin u-boot-nodtb.bin u-boot.dtb spl/u-boot-spl.bin"
+U_BOOT_EXTRA_BUILDARGS = "BL31=${S}/bl31.bin"
+
+DEPENDS += "trusted-firmware-a-imx8mmlpd4-evk"
+
+DEBIAN_BUILD_DEPENDS .= ", \
+    libssl-dev:native, \
+    libssl-dev:${DISTRO_ARCH}, \
+    python3-dev:native, \
+    python3-setuptools, \
+    swig, \
+    trusted-firmware-a-imx8mmlpd4-evk"
+
+do_prepare_build:append() {
+    cp /usr/lib/trusted-firmware-a/imx8mmlpd4-evk/bl31.bin ${S}/bl31.bin
+}

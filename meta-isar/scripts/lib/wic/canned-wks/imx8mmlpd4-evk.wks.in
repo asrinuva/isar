@@ -1,0 +1,11 @@
+#
+# Copyright (c) Siemens AG, 2026
+#
+# SPDX-License-Identifier: MIT
+
+# i.MX8MM ROM expects the fused boot container at 33 KiB on SD media.
+part u-boot --source rawcopy --sourceparams "file=/usr/lib/u-boot/${MACHINE}/${U_BOOT_BIN}" --no-table --align 33
+
+part / --source rootfs-u-boot --ondisk mmcblk0 --sourceparams "root=/dev/mmcblk0p1" --fstype ext4 --mkfs-extraopts "-T default" --label platform --align 1024 --active
+
+bootloader --append "console=ttymxc1,115200 rootwait rw"
